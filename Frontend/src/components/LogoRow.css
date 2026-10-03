@@ -1,0 +1,22 @@
+.logos {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 32px;
+    margin-top: 40px;
+}
+
+.logos div {
+    border: 1px dashed #666;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+    font-size: 15px;
+    color: #bbb;
+    line-height: 1.4;
+}
+
+@media (max-width: 960px) {
+    .logos {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
