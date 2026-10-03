@@ -8,3 +8,9 @@
     justify-items: start;
     padding-block: 96px 120px;
 }
+
+.hero .btn.btn--ghost {
+    background: #1d1d27;
+    color: #fff;
+    box-shadow: 0 0 0 1px #2c2c38;
+}
