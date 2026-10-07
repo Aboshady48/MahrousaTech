@@ -1,0 +1,145 @@
+.contact {
+    padding-block: 48px 96px;
+}
+
+.contact h1 {
+    font-size: clamp(34px, 5vw, 56px);
+    margin: 20px 0 16px;
+}
+
+.contact__grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 40px;
+    margin-top: 48px;
+    align-items: start;
+}
+
+.contact form {
+    display: grid;
+    gap: 20px;
+}
+
+.two {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.f {
+    display: grid;
+    gap: 8px;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.f small,
+.chk {
+    font-weight: 300;
+    color: var(--muted);
+}
+
+.f input,
+.f select,
+.f textarea {
+    font: 300 17px Outfit, sans-serif;
+    color: #fff;
+    background: var(--row);
+    border: 1px solid #7a7a88;
+    border-radius: 6px;
+    padding: 14px 16px;
+    width: 100%;
+}
+
+.f textarea {
+    min-height: 140px;
+    resize: vertical;
+}
+
+.f input:focus,
+.f select:focus,
+.f textarea:focus {
+    outline: 2px solid var(--teal);
+    outline-offset: 2px;
+}
+
+.f input[aria-invalid="true"] {
+    border-color: #ff8a80;
+}
+
+.f__err {
+    color: #ffb4ac;
+    font-size: 14px;
+}
+
+.chk {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+}
+
+.chk input {
+    width: 20px;
+    height: 20px;
+    margin-top: 4px;
+    accent-color: var(--teal);
+}
+
+.contact__alert {
+    border: 1px solid #ff8a80;
+    background: #2c0e0b;
+    color: #ffb4ac;
+    border-radius: 8px;
+    padding: 16px 20px;
+}
+
+.contact__ok {
+    border: 1px solid var(--teal);
+    border-radius: 12px;
+    padding: 40px;
+    display: grid;
+    gap: 16px;
+    justify-items: start;
+}
+
+.contact__side {
+    display: grid;
+    gap: 20px;
+}
+
+.contact__side>div {
+    background: var(--panel);
+    border-radius: 12px;
+    padding: 24px;
+    color: var(--muted);
+}
+
+.contact__side h3 {
+    font-weight: 500;
+    font-size: 20px;
+    color: #fff;
+    margin-bottom: 6px;
+}
+
+button.btn:disabled {
+    opacity: .6;
+    cursor: wait;
+}
+
+.contact .btn.btn--teal {
+    background: var(--teal);
+    color: #fff;
+}
+
+.contact .btn.btn--ghost {
+    background: #1d1d27;
+    color: #fff;
+    box-shadow: 0 0 0 1px #2c2c38;
+}
+
+@media (max-width: 960px) {
+    .contact__grid,
+    .two {
+        grid-template-columns: 1fr;
+    }
+}

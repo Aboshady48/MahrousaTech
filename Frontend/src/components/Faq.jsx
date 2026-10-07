@@ -1,16 +1,16 @@
 import './Faq.css'
 
-const items = [
+const defaults = [
   'Which industries do you serve?',
   'Do you work with our existing systems?',
   'How do we start?',
 ]
 
-export default function Faq() {
+export default function Faq({ title = 'FAQ', items = defaults }) {
   return (
     <section className="section">
       <div className="container faq">
-        <h2>FAQ</h2>
+        <h2>{title}</h2>
         <div>
           {items.map((q) => (
             <details key={q}>
