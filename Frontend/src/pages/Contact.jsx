@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useState } from 'react'
 import { sendContact } from '../api/contact'
 import './Contact.css'
@@ -142,4 +143,10 @@ export default function Contact() {
       </div>
     </div>
   )
+=======
+import ContactSection from '../components/contact/ContactSection'
+
+export default function Contact() {
+  return <ContactSection />
+>>>>>>> origin/contact-us
 }
