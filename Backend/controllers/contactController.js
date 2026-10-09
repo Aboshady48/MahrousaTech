@@ -34,7 +34,6 @@ export async function sendContactMessage(req, res, next) {
     await sendContactEmail(data);
     res.status(201).json({ ok: true });
   } catch (err) {
-    // Log the real SMTP error, but don't leak it to the visitor
     console.error('Contact email failed:', err);
     const publicError = new Error('Could not send your message. Please try again.');
     publicError.status = 502;

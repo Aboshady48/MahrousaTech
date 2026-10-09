@@ -2,7 +2,8 @@ import FormField from './FormField'
 import useContactForm from './useContactForm.js'
 
 export default function ContactForm() {
-  const { values, status, handleChange, handleSubmit, reset } = useContactForm()
+  const { values, status, errorMessage, handleChange, handleSubmit, reset } =
+    useContactForm()
 
   if (status === 'sent') {
     return (
@@ -24,6 +25,7 @@ export default function ContactForm() {
         value={values.name}
         onChange={handleChange}
         autoComplete="name"
+        maxLength={100}
         required
       />
       <FormField
@@ -33,6 +35,7 @@ export default function ContactForm() {
         value={values.email}
         onChange={handleChange}
         autoComplete="email"
+        maxLength={254}
         required
       />
       <FormField
@@ -41,6 +44,7 @@ export default function ContactForm() {
         value={values.company}
         onChange={handleChange}
         autoComplete="organization"
+        maxLength={100}
       />
       <FormField
         as="textarea"
@@ -49,12 +53,14 @@ export default function ContactForm() {
         rows={5}
         value={values.message}
         onChange={handleChange}
+        minLength={10}
+        maxLength={5000}
         required
       />
 
       {status === 'error' && (
         <p className="contact__error" role="alert">
-          Your message didn't send. Check your connection and try again.
+          {errorMessage}
         </p>
       )}
 

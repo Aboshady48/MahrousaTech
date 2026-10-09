@@ -1,5 +1,5 @@
 const DETAILS = [
-  { label: 'Email', value: 'hello@example.com', href: 'mailto:hello@example.com' },
+  { label: 'Email', value: 'info@MahrousaTech.com', href: 'mailto:info@MahrousaTech.com' },
   { label: 'Phone', value: '+20 000 000 0000', href: 'tel:+200000000000' },
 ]
 

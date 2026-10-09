@@ -35,7 +35,7 @@ export async function sendContactEmail({ name, email, company, message }) {
     <p style="white-space:pre-wrap">${escapeHtml(message)}</p>
   `;
 
-  await transporter.sendMail({
+  const info = await transporter.sendMail({
     from: {
       name: process.env.MAIL_FROM_NAME || 'Website',
       address: process.env.SMTP_USER,
@@ -45,5 +45,12 @@ export async function sendContactEmail({ name, email, company, message }) {
     subject: `New contact message from ${name}`,
     text,
     html,
+  });
+
+  // Shows in the backend terminal what Gmail did with the message
+  console.log('Mail result:', {
+    accepted: info.accepted,
+    rejected: info.rejected,
+    response: info.response,
   });
 }
