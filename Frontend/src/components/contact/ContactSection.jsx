@@ -5,7 +5,7 @@ import './contact.css'
 export default function ContactSection() {
   return (
     <section className="section contact">
-      <div className="contact__inner">
+      <div className="container contact__inner">
         <ContactInfo />
         <ContactForm />
       </div>

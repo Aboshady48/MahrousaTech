@@ -1,5 +1,5 @@
 /* ---------- Section + ambient background ---------- */
-.contact {
+.section.contact {
   position: relative;
   overflow: hidden;
   isolation: isolate;
@@ -23,13 +23,17 @@
   animation: drift 16s ease-in-out infinite alternate;
 }
 
+/* Width and side padding come from the global .container class */
 .contact__inner {
-  width: min(1120px, 100% - 48px);
-  margin-inline: auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 64px;
   align-items: start;
+}
+
+/* Lets grid children shrink instead of forcing horizontal scroll */
+.contact__inner > * {
+  min-width: 0;
 }
 
 /* ---------- Intro column ---------- */
@@ -60,6 +64,7 @@
 .contact__details dd {
   margin: 0;
   font-size: 22px;
+  overflow-wrap: anywhere;
 }
 
 /* underline that draws in on hover */
@@ -71,13 +76,9 @@
   transition: background-size 0.35s ease, color 0.25s ease;
 }
 
-.contact__details a:hover,
 .contact__details a:focus-visible {
   color: var(--teal);
   background-size: 100% 2px;
-}
-
-.contact__details a:focus-visible {
   outline: 2px solid var(--teal);
   outline-offset: 4px;
   border-radius: 2px;
@@ -88,6 +89,7 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  width: 100%;
   padding: 32px;
   border-radius: 14px;
   background: linear-gradient(160deg, #20202c 0%, #1a1a24 100%);
@@ -121,6 +123,8 @@ form.contact__card:focus-within {
 
 .field input,
 .field textarea {
+  width: 100%;
+  min-width: 0;
   font: inherit;
   color: var(--ink);
   background: var(--bg);
@@ -128,13 +132,10 @@ form.contact__card:focus-within {
   border-radius: 8px;
   padding: 12px 14px;
   resize: vertical;
+  -webkit-appearance: none;
+  appearance: none;
   transition: border-color 0.25s ease, box-shadow 0.25s ease,
     background-color 0.25s ease;
-}
-
-.field input:hover,
-.field textarea:hover {
-  border-color: #3c3c4c;
 }
 
 .field input:focus,
@@ -174,16 +175,6 @@ form.contact__card:focus-within {
   transform: translateX(-120%);
 }
 
-.contact__submit:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 28px -10px color-mix(in srgb, var(--teal) 70%, transparent);
-}
-
-.contact__submit:hover:not(:disabled)::after {
-  transform: translateX(120%);
-  transition: transform 0.7s ease;
-}
-
 .contact__submit:active:not(:disabled) {
   transform: translateY(0) scale(0.97);
 }
@@ -196,6 +187,29 @@ form.contact__card:focus-within {
 .contact__submit:disabled {
   cursor: progress;
   animation: pulse 1.1s ease-in-out infinite;
+}
+
+/* Hover effects only on devices that really hover (avoids "stuck" hover on touch) */
+@media (hover: hover) {
+  .contact__details a:hover {
+    color: var(--teal);
+    background-size: 100% 2px;
+  }
+
+  .field input:hover,
+  .field textarea:hover {
+    border-color: #3c3c4c;
+  }
+
+  .contact__submit:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px -10px color-mix(in srgb, var(--teal) 70%, transparent);
+  }
+
+  .contact__submit:hover:not(:disabled)::after {
+    transform: translateX(120%);
+    transition: transform 0.7s ease;
+  }
 }
 
 /* ---------- Error ---------- */
@@ -262,15 +276,22 @@ form.contact__card:focus-within {
   to { box-shadow: 0 0 0 22px transparent; }
 }
 
-/* ---------- Responsive ---------- */
+/* ---------- Tablet: single column ---------- */
 @media (max-width: 860px) {
   .contact__inner {
     grid-template-columns: 1fr;
     gap: 40px;
   }
 
+  /* Keep the form a comfortable width instead of stretching edge to edge */
   .contact__card {
-    padding: 24px;
+    max-width: 680px;
+  }
+
+  /* Email and phone side by side */
+  .contact__details {
+    grid-template-columns: repeat(2, max-content);
+    gap: 20px 56px;
   }
 
   .contact::before {
@@ -278,6 +299,48 @@ form.contact__card:focus-within {
     height: 420px;
     top: -140px;
     right: -160px;
+  }
+}
+
+/* ---------- Phone ---------- */
+@media (max-width: 560px) {
+  .section.contact {
+    padding-block: 48px 56px;
+  }
+
+  .contact__inner {
+    gap: 32px;
+  }
+
+  .contact__intro {
+    gap: 18px;
+  }
+
+  .contact .lead {
+    font-size: 19px;
+  }
+
+  .contact__details {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-top: 8px;
+  }
+
+  .contact__details dd {
+    font-size: 20px;
+  }
+
+  .contact__card {
+    padding: 20px;
+    gap: 18px;
+    border-radius: 12px;
+  }
+
+  /* Full-width button: easier to tap */
+  .contact__submit {
+    align-self: stretch;
+    text-align: center;
+    padding: 14px 28px;
   }
 }
 
