@@ -1,0 +1,25 @@
+.footer__grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1.3fr 1fr 1fr;
+    gap: 32px;
+    padding-block: 72px;
+}
+
+footer h4 {
+    margin: 0 0 20px;
+    font-weight: 500;
+    font-size: 22px;
+}
+
+footer a {
+    display: block;
+    color: var(--muted);
+    text-decoration: none;
+    margin-bottom: 16px;
+}
+
+@media (max-width: 960px) {
+    .footer__grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}

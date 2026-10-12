@@ -1,0 +1,16 @@
+.hero {
+    background: radial-gradient(ellipse 70% 90% at 100% 0%, #00786f 0%, #003d3a 35%, #000 75%);
+}
+
+.hero__inner {
+    display: grid;
+    gap: 28px;
+    justify-items: start;
+    padding-block: 96px 120px;
+}
+
+.hero .btn.btn--ghost {
+    background: #1d1d27;
+    color: #fff;
+    box-shadow: 0 0 0 1px #2c2c38;
+}
