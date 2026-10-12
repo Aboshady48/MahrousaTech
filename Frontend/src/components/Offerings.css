@@ -1,0 +1,119 @@
+.of__title {
+    margin: 24px 0 20px;
+}
+
+.of__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+    margin-top: 48px;
+}
+
+.of__card {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 40px;
+    border-radius: 16px;
+    background: linear-gradient(160deg, #20202c 0%, #1a1a24 100%);
+    box-shadow: 0 0 0 1px #2c2c38;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.of__card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--teal) 55%, transparent),
+        0 24px 50px -28px color-mix(in srgb, var(--teal) 50%, transparent);
+}
+
+.of__icon {
+    display: grid;
+    place-items: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    color: var(--teal);
+    background: color-mix(in srgb, var(--teal) 14%, transparent);
+}
+
+.of__card h3 {
+    font-weight: 500;
+    font-size: 30px;
+    margin-top: 10px;
+}
+
+.of__summary {
+    color: var(--muted);
+    font-size: 19px;
+}
+
+.of__list {
+    list-style: none;
+    margin: 18px 0 0;
+    padding: 0;
+    display: grid;
+    gap: 0;
+}
+
+.of__list li {
+    display: flex;
+    gap: 14px;
+    padding: 18px 0;
+    border-top: 1px solid #2c2c38;
+}
+
+.of__list svg {
+    flex: none;
+    margin-top: 3px;
+    color: var(--teal);
+}
+
+.of__list b {
+    display: block;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.of__list span {
+    display: block;
+    color: var(--muted);
+    font-size: 16px;
+}
+
+.of__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: auto;
+    padding-top: 12px;
+    align-self: flex-start;
+    color: var(--teal);
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 15px;
+}
+
+.of__link svg {
+    transition: transform 0.25s ease;
+}
+
+.of__link:hover svg {
+    transform: translateX(5px);
+}
+
+@media (max-width: 960px) {
+    .of__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .of__card {
+        padding: 28px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .of__card,
+    .of__link svg {
+        transition: none;
+    }
+}

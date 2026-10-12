@@ -1,0 +1,134 @@
+.footer {
+    border-top: 1px solid var(--line);
+}
+
+/* ---------- Layout ---------- */
+.footer__grid {
+    display: grid;
+    grid-template-columns: minmax(240px, 1.3fr) 2.7fr;
+    gap: 48px 64px;
+    padding-block: 72px 48px;
+}
+
+.footer__nav {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px 32px;
+}
+
+/* Lets long text wrap instead of forcing horizontal scroll */
+.footer__grid > *,
+.footer__nav > * {
+    min-width: 0;
+}
+
+/* ---------- Brand ---------- */
+.footer__brand {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    max-width: 340px;
+}
+
+.footer__logo {
+    display: inline-block;
+    align-self: flex-start;
+}
+
+.footer__logo img {
+    display: block;
+    height: 24px;
+    width: auto;
+}
+
+.footer__brand p {
+    color: var(--muted);
+    font-size: 16px;
+}
+
+/* ---------- Link columns ---------- */
+.footer__heading {
+    margin: 0 0 20px;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.footer__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 14px;
+}
+
+.footer__list a {
+    color: var(--muted);
+    text-decoration: none;
+    overflow-wrap: anywhere;
+    transition: color 0.2s ease;
+}
+
+.footer__list a:focus-visible,
+.footer__logo:focus-visible {
+    outline: 2px solid var(--teal);
+    outline-offset: 4px;
+    border-radius: 4px;
+}
+
+@media (hover: hover) {
+    .footer__list a:hover {
+        color: var(--teal);
+    }
+}
+
+/* ---------- Bottom bar ---------- */
+.footer__bottom {
+    padding-block: 0 32px;
+    color: var(--muted);
+    font-size: 15px;
+}
+
+/* Divider drawn inside the container so it lines up with the content */
+.footer__bottom::before {
+    content: "";
+    display: block;
+    height: 1px;
+    margin-bottom: 24px;
+    background: var(--line);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 960px) {
+    .footer__grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding-block: 56px 40px;
+    }
+
+    .footer__brand {
+        max-width: 480px;
+    }
+}
+
+@media (max-width: 640px) {
+    .footer__nav {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    /* Contact column gets the full row so the email address never gets cramped */
+    .footer__nav > :last-child {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 380px) {
+    .footer__nav {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .footer__list a {
+        transition: none;
+    }
+}

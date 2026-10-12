@@ -1,0 +1,68 @@
+.logorow {
+    padding-block: 48px;
+    border-bottom: 1px solid #2c2c38;
+}
+
+.logorow__title {
+    margin-bottom: 28px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+.logorow__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 28px 56px;
+}
+
+/* Every logo is shown as a soft white silhouette so mixed logos look consistent on the dark theme */
+.logorow__list img {
+    display: block;
+    height: 36px;
+    width: auto;
+    max-width: 160px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+    opacity: 0.6;
+    transition: opacity 0.25s ease;
+}
+
+.logorow__list a:focus-visible {
+    outline: 2px solid var(--teal);
+    outline-offset: 6px;
+    border-radius: 4px;
+}
+
+.logorow__list a:focus-visible img {
+    opacity: 1;
+}
+
+@media (hover: hover) {
+    .logorow__list a:hover img {
+        opacity: 1;
+    }
+}
+
+@media (max-width: 560px) {
+    .logorow {
+        padding-block: 36px;
+    }
+
+    .logorow__list {
+        gap: 24px 36px;
+    }
+
+    .logorow__list img {
+        height: 28px;
+        max-width: 120px;
+    }
+}

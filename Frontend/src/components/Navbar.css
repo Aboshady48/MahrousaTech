@@ -1,0 +1,222 @@
+.container {
+    max-width: 1280px;
+    margin-inline: auto;
+    padding-inline: 32px;
+}
+
+.nav {
+    position: relative;
+    z-index: 50;
+    border-bottom: 1px solid var(--line);
+}
+
+.nav__row {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+    height: 90px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    flex: none;
+    text-decoration: none;
+}
+
+.logo img {
+    display: block;
+    height: 24px;
+    width: auto;
+}
+
+.nav__links {
+    display: flex;
+    gap: 44px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+}
+
+.nav__links a {
+    text-decoration: none;
+}
+
+.nav__links a.active {
+    color: var(--teal);
+}
+
+.btn {
+    display: inline-block;
+    padding: 16px 36px;
+    border-radius: var(--radius);
+    background: #fff;
+    color: #000;
+    text-decoration: none;
+    font: 400 18px Outfit, sans-serif;
+    border: 0;
+    cursor: pointer;
+}
+
+.btn--sm {
+    padding: 12px 22px;
+    font-size: 15px;
+    margin-inline-start: auto;
+    white-space: nowrap;
+}
+
+/* Hamburger + in-menu button are hidden on desktop */
+.nav__toggle,
+.nav__cta-mobile {
+    display: none;
+}
+
+.nav__links a:focus-visible,
+.logo:focus-visible,
+.nav__toggle:focus-visible {
+    outline: 2px solid var(--teal);
+    outline-offset: 4px;
+    border-radius: 4px;
+}
+
+/* ---------- Tighten spacing before the links stop fitting ---------- */
+@media (max-width: 1280px) {
+    .nav__row {
+        gap: 32px;
+    }
+
+    .nav__links {
+        gap: 28px;
+    }
+}
+
+/* ---------- Tablet and mobile: hamburger menu ---------- */
+@media (max-width: 1140px) {
+    .nav__row {
+        gap: 16px;
+    }
+
+    .nav__toggle {
+        display: block;
+        position: relative;
+        flex: none;
+        width: 44px;
+        height: 44px;
+        padding: 0;
+        border: 1px solid var(--line);
+        border-radius: var(--radius, 8px);
+        background: transparent;
+        color: inherit;
+        cursor: pointer;
+    }
+
+    .nav__toggle span {
+        position: absolute;
+        left: 12px;
+        right: 12px;
+        height: 2px;
+        border-radius: 2px;
+        background: currentColor;
+        transition: transform 0.25s ease, top 0.25s ease, opacity 0.2s ease;
+    }
+
+    .nav__toggle span:nth-child(1) { top: 14px; }
+    .nav__toggle span:nth-child(2) { top: 21px; }
+    .nav__toggle span:nth-child(3) { top: 28px; }
+
+    .nav__toggle[aria-expanded="true"] span:nth-child(1) {
+        top: 21px;
+        transform: rotate(45deg);
+    }
+    .nav__toggle[aria-expanded="true"] span:nth-child(2) {
+        opacity: 0;
+    }
+    .nav__toggle[aria-expanded="true"] span:nth-child(3) {
+        top: 21px;
+        transform: rotate(-45deg);
+    }
+
+    /* The menu becomes a panel under the header */
+    .nav__menu {
+        position: absolute;
+        top: 100%;
+        inset-inline: 0;
+        padding: 8px 32px 28px;
+        background: var(--bg);
+        border-bottom: 1px solid var(--line);
+        box-shadow: 0 24px 40px -24px rgba(0, 0, 0, 0.8);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-8px);
+        pointer-events: none;
+        transition: opacity 0.2s ease, transform 0.25s ease, visibility 0s 0.25s;
+    }
+
+    .nav__menu.is-open {
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        pointer-events: auto;
+        transition: opacity 0.2s ease, transform 0.25s ease;
+    }
+
+    .nav__links {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .nav__links li + li {
+        border-top: 1px solid var(--line);
+    }
+
+    .nav__links a {
+        display: block;
+        padding: 16px 0;
+        font-size: 20px;
+    }
+}
+
+/* ---------- Small phones ---------- */
+@media (max-width: 720px) {
+    .container {
+        padding-inline: 20px;
+    }
+
+    .nav__row {
+        height: 72px;
+    }
+
+    .logo img {
+        height: 20px;
+    }
+
+    .nav__menu {
+        padding-inline: 20px;
+    }
+}
+
+@media (max-width: 560px) {
+    /* Not enough room for logo + button + hamburger: move the button into the menu */
+    .nav__cta {
+        display: none;
+    }
+
+    .nav__toggle {
+        margin-inline-start: auto;
+    }
+
+    .nav__cta-mobile {
+        display: block;
+        margin-top: 20px;
+        text-align: center;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .nav__menu,
+    .nav__menu.is-open,
+    .nav__toggle span {
+        transition: none;
+    }
+}

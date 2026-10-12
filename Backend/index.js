@@ -6,6 +6,7 @@ import profileRoutes from './routes/profile.js';
 import { requestLogger } from './middleware/requestLogger.js';
 import { errorHandler } from './middleware/errorHandler.js';
 import adminRoutes from './routes/admin.js';
+import contactRoutes from './routes/contact.js';
 
 
 const app = express();
@@ -19,6 +20,7 @@ app.get('/health', (req, res) => res.json({ ok: true }));
 app.use('/api', protectedRoutes);
 app.use('/api', profileRoutes);
 app.use('/api', adminRoutes);
+app.use('/api', contactRoutes);
 
 app.use(errorHandler);
 

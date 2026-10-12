@@ -1,0 +1,48 @@
+.faq {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 48px;
+    align-items: start;
+}
+
+.faq h2 {
+    font-weight: 600;
+}
+
+.faq details {
+    border-top: 1px solid #666;
+    padding: 22px 4px;
+}
+
+.faq details:last-child {
+    border-bottom: 1px solid #666;
+}
+
+.faq summary {
+    cursor: pointer;
+    font-size: 19px;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+}
+
+.faq summary::after {
+    content: "+";
+    color: var(--teal);
+}
+
+.faq details[open] summary::after {
+    content: "\2212";
+}
+
+.faq details p {
+    color: var(--muted);
+    font-size: 16px;
+    margin-top: 12px;
+}
+
+@media (max-width: 960px) {
+    .faq {
+        grid-template-columns: 1fr;
+    }
+}
