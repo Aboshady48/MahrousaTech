@@ -19,6 +19,7 @@
     "express": "^5.2.1",
     "express-rate-limit": "^8.7.1",
     "nodemailer": "^10.0.15",
+    "pg": "^8.23.1",
     "ws": "^8.21.3"
   },
   "devDependencies": {

@@ -1,6 +1,6 @@
 const DETAILS = [
-  { label: 'Email', value: 'info@MahrousaTech.com', href: 'mailto:info@MahrousaTech.com' },
-  { label: 'Phone', value: '+20 000 000 0000', href: 'tel:+200000000000' },
+  { label: 'Email', value: 'amohamed@mahrousatech.com', href: 'mailto:amohamed@mahrousatech.com' },
+  { label: 'Phone', value: '+20 109 044 8712', href: 'tel:+201090448712' },
 ]
 
 export default function ContactInfo() {

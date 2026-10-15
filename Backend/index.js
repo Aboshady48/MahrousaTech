@@ -7,6 +7,7 @@ import { requestLogger } from './middleware/requestLogger.js';
 import { errorHandler } from './middleware/errorHandler.js';
 import adminRoutes from './routes/admin.js';
 import contactRoutes from './routes/contact.js';
+import { testDatabaseConnection } from './src/db.js';
 
 
 const app = express();
@@ -25,4 +26,11 @@ app.use('/api', contactRoutes);
 app.use(errorHandler);
 
 const port = process.env.PORT || 4000;
-app.listen(port, () => console.log(`Server running on http://localhost:${port}`));
+app.listen(port, () => {
+  console.log(`Server running on http://localhost:${port}`);
+
+  // Check the database at startup, but keep the server running if it is down
+  testDatabaseConnection().catch((err) =>
+    console.error('Neon PostgreSQL connection failed:', err.message)
+  );
+});

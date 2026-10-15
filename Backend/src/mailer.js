@@ -1,5 +1,6 @@
 import nodemailer from 'nodemailer';
 import 'dotenv/config';
+import { buildContactEmail } from './Emailtemplate.js';
 
 const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST,
@@ -11,29 +12,8 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-const escapeHtml = (s) =>
-  s
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
-
 export async function sendContactEmail({ name, email, company, message }) {
-  const text = [
-    `Name: ${name}`,
-    `Email: ${email}`,
-    `Company: ${company || '-'}`,
-    '',
-    message,
-  ].join('\n');
-
-  const html = `
-    <h2>New contact message</h2>
-    <p><strong>Name:</strong> ${escapeHtml(name)}<br>
-       <strong>Email:</strong> ${escapeHtml(email)}<br>
-       <strong>Company:</strong> ${escapeHtml(company || '-')}</p>
-    <p style="white-space:pre-wrap">${escapeHtml(message)}</p>
-  `;
+  const { subject, text, html } = buildContactEmail({ name, email, company, message });
 
   const info = await transporter.sendMail({
     from: {
@@ -42,12 +22,12 @@ export async function sendContactEmail({ name, email, company, message }) {
     },
     to: process.env.CONTACT_RECEIVER,
     replyTo: { name, address: email }, // hitting "Reply" answers the visitor
-    subject: `New contact message from ${name}`,
+    subject,
     text,
     html,
   });
 
-  // Shows in the backend terminal what Gmail did with the message
+  // Shows in the backend terminal what the mail server did with the message
   console.log('Mail result:', {
     accepted: info.accepted,
     rejected: info.rejected,
