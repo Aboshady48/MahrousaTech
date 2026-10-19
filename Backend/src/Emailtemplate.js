@@ -36,11 +36,10 @@ export function buildContactEmail({ name, email, company, message }) {
   const preview = escapeHtml(message.replace(/\s+/g, ' ').slice(0, 90))
   const replyHref = `mailto:${safeEmail}?subject=${encodeURIComponent('Re: your message to Al-Mahrousa')}`
 
-  // Optional: set EMAIL_LOGO_URL to a PUBLIC image address (e.g. https://yourdomain.com/logo.png).
-  // Email apps cannot load images from localhost.
-  const logo = process.env.EMAIL_LOGO_URL
-    ? `<img src="${escapeHtml(process.env.EMAIL_LOGO_URL)}" alt="Al-Mahrousa" height="28" style="display:block;height:28px;width:auto;border:0;">`
-    : `<span style="font-family:${FONT};font-size:20px;font-weight:600;letter-spacing:2px;color:#ffffff;">AL-MAHROUSA</span>`
+  // The logo is embedded in the email as an inline attachment (see mailer.js,
+  // cid "logo@mahrousa"), so it works without a public URL.
+  // The alt text is shown if the email app blocks images.
+  const logo = `<img src="cid:logo@mahrousa" alt="Al-Mahrousa" width="240" height="30" style="display:block;width:240px;height:30px;border:0;font-family:${FONT};font-size:20px;font-weight:600;letter-spacing:2px;color:#ffffff;">`
 
   const subject = company
     ? `New message from ${name} (${company})`
@@ -81,7 +80,7 @@ export function buildContactEmail({ name, email, company, message }) {
 
           <!-- Header -->
           <tr>
-            <td style="background:${DARK};padding:24px 32px;border-bottom:3px solid ${TEAL};border-radius:12px 12px 0 0;">
+            <td bgcolor="${DARK}" style="background:${DARK};padding:24px 32px;border-bottom:3px solid ${TEAL};border-radius:12px 12px 0 0;">
               ${logo}
             </td>
           </tr>
